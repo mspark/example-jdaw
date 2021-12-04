@@ -5,10 +5,10 @@ import static net.dv8tion.jda.api.Permission.MANAGE_SERVER;
 
 import java.util.List;
 
-import de.mspark.jdaw.command.Command;
-import de.mspark.jdaw.command.CommandProperties;
-import de.mspark.jdaw.jda.JDAManager;
-import de.mspark.jdaw.jda.JDAWConfig;
+import de.mspark.jdaw.Command;
+import de.mspark.jdaw.CommandProperties;
+import de.mspark.jdaw.JDAManager;
+import de.mspark.jdaw.config.JDAWConfig;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.Role;

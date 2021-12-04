@@ -3,8 +3,8 @@ package de.mspark.example.jdaw;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import de.mspark.jdaw.jda.JDAConfigurationVisitor;
-import de.mspark.jdaw.jda.JDAWConfig;
+import de.mspark.jdaw.config.JDAConfigurationVisitor;
+import de.mspark.jdaw.config.JDAWConfig;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;

@@ -1,13 +1,15 @@
 package de.mspark.example.jdaw.commands;
 
-import static net.dv8tion.jda.api.Permission.*;
+import static net.dv8tion.jda.api.Permission.ADMINISTRATOR;
+import static net.dv8tion.jda.api.Permission.BAN_MEMBERS;
+import static net.dv8tion.jda.api.Permission.KICK_MEMBERS;
 
 import java.util.List;
 
-import de.mspark.jdaw.command.Command;
-import de.mspark.jdaw.command.CommandProperties;
-import de.mspark.jdaw.jda.JDAManager;
-import de.mspark.jdaw.jda.JDAWConfig;
+import de.mspark.jdaw.Command;
+import de.mspark.jdaw.CommandProperties;
+import de.mspark.jdaw.JDAManager;
+import de.mspark.jdaw.config.JDAWConfig;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
