@@ -22,4 +22,9 @@ public class HelpCommand extends GlobalHelpCommand {
                 """;
     }
 
+    @Override
+    public String botName() {
+        return "testbot";
+    }
+
 }
