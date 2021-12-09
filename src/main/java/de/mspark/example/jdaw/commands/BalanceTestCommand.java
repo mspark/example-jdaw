@@ -10,6 +10,7 @@ import de.mspark.jdaw.Command;
 import de.mspark.jdaw.CommandProperties;
 import de.mspark.jdaw.JDAManager;
 import de.mspark.jdaw.config.JDAWConfig;
+import de.mspark.jdaw.guilds.GuildConfigService;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
@@ -27,8 +28,8 @@ public class BalanceTestCommand extends Command {
     /*
      * Due to the balancing option, this command is not executed on the main token only. 
      */
-    public BalanceTestCommand(JDAWConfig conf, JDAManager jdas) {
-        super(conf, jdas, true);
+    public BalanceTestCommand(JDAWConfig conf, GuildConfigService gc, JDAManager jdas) {
+        super(conf, gc, jdas, true);
     }
 
     @Override
