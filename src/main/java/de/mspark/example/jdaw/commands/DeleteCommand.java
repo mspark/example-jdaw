@@ -7,6 +7,7 @@ import java.util.List;
 
 import de.mspark.jdaw.Command;
 import de.mspark.jdaw.CommandProperties;
+import de.mspark.jdaw.DistributionSetting;
 import de.mspark.jdaw.JDAManager;
 import de.mspark.jdaw.config.JDAWConfig;
 import de.mspark.jdaw.guilds.GuildConfigService;
@@ -25,7 +26,7 @@ import net.dv8tion.jda.api.entities.Role;
 public class DeleteCommand extends Command {
 
     public DeleteCommand(JDAWConfig conf, GuildConfigService gc, JDAManager jdas) {
-        super(conf, gc, jdas, false);
+        super(conf, gc, jdas, DistributionSetting.MAIN_ONLY);
     }
 
     @Override

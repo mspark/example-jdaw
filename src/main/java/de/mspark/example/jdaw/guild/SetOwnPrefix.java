@@ -20,7 +20,7 @@ public class SetOwnPrefix extends Command {
     private GuildRepository repo;
     
     public SetOwnPrefix(JDAWConfig config, GuildConfigService guildConfig, GuildRepository repo, JDAManager jdas) {
-        super(config, guildConfig, jdas, true);
+        super(config, guildConfig, jdas, DistributionSetting.MAIN_ONLY);
         this.repo = repo;
     }
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 import de.mspark.jdaw.Command;
 import de.mspark.jdaw.CommandProperties;
+import de.mspark.jdaw.DistributionSetting;
 import de.mspark.jdaw.JDAManager;
 import de.mspark.jdaw.config.JDAWConfig;
 import de.mspark.jdaw.guilds.GuildConfigService;
@@ -29,7 +30,7 @@ public class BalanceTestCommand extends Command {
      * Due to the balancing option, this command is not executed on the main token only. 
      */
     public BalanceTestCommand(JDAWConfig conf, GuildConfigService gc, JDAManager jdas) {
-        super(conf, gc, jdas, true);
+        super(conf, gc, jdas, DistributionSetting.BALANCE);
     }
 
     @Override
