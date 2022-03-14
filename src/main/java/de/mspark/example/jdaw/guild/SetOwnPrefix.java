@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import de.mspark.jdaw.Command;
 import de.mspark.jdaw.CommandProperties;
+import de.mspark.jdaw.DistributionSetting;
 import de.mspark.jdaw.JDAManager;
 import de.mspark.jdaw.config.JDAWConfig;
 import de.mspark.jdaw.guilds.GuildConfigService;
@@ -26,7 +27,7 @@ public class SetOwnPrefix extends Command {
     @Override
     public void doActionOnCmd(Message msg, List<String> cmdArguments) {
         String prefix = filter(cmdArguments.get(0)).get();
-        var guildConfig = repo.findOne(msg.getGuild().getIdLong())
+        var guildConfig = repo.findById(msg.getGuild().getIdLong())
             .map(g -> new CustomGuildConf(g.id(), prefix, g.whitelist()))
             .orElse(new CustomGuildConf(msg.getGuild().getIdLong(), prefix));
         repo.save(guildConfig);
