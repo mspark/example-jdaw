@@ -5,13 +5,16 @@ import org.springframework.context.annotation.Configuration;
 
 import de.mspark.jdaw.config.JDAConfigurationVisitor;
 import de.mspark.jdaw.config.JDAWConfig;
+import de.mspark.jdaw.help.HelpConfig;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 @Configuration
 public class CustomJdaConfig {
+    
     @Bean
+    // config for enabling member caching via intent
     public JDAConfigurationVisitor jdaConfigurationVisitor() {
         return jda -> jda.setChunkingFilter(ChunkingFilter.ALL)
                 .setMemberCachePolicy(MemberCachePolicy.ALL)
@@ -19,11 +22,12 @@ public class CustomJdaConfig {
     }
     
     @Bean
+    // mandatory config
     public JDAWConfig jdawConfig() {
         return new JDAWConfig() {
             
             @Override
-            public String prefix() {
+            public String defaultPrefix() {
                 return "!";
             }
             
@@ -33,5 +37,21 @@ public class CustomJdaConfig {
             }
         };
     }
+    
+    @Bean
+    // This enabled a global help command
+    public HelpConfig helpConfig() {
+        return new HelpConfig() {
+            
+            @Override
+            public String botName() {
+                return "testbot";
+            }
+            
+            @Override
+            public String botDescription() {
+                return "Bot for testing - this is shown at the global help page";
+            }
+        };
+    }
 }
-

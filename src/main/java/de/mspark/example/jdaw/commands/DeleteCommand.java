@@ -9,10 +9,8 @@ import de.mspark.jdaw.Command;
 import de.mspark.jdaw.CommandProperties;
 import de.mspark.jdaw.DistributionSetting;
 import de.mspark.jdaw.JDAManager;
-import de.mspark.jdaw.config.JDAWConfig;
 import de.mspark.jdaw.guilds.GuildConfigService;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.Role;
 
 /**
@@ -22,11 +20,11 @@ import net.dv8tion.jda.api.entities.Role;
  */
 @CommandProperties(trigger = "delete", description = "Deletes all member from one group.",
     botGuildPermissions = MANAGE_ROLES, userGuildPermissions = MANAGE_SERVER,
-    executableWihtoutArgs = false, helpPage = false)
+    executableWihtoutArgs = false)
 public class DeleteCommand extends Command {
 
-    public DeleteCommand(JDAWConfig conf, GuildConfigService gc, JDAManager jdas) {
-        super(conf, gc, jdas, DistributionSetting.MAIN_ONLY);
+    public DeleteCommand(GuildConfigService gc, JDAManager jdas) {
+        super(gc, jdas, DistributionSetting.MAIN_ONLY);
     }
 
     @Override
@@ -42,12 +40,5 @@ public class DeleteCommand extends Command {
             throw new RuntimeException("Invalid property. Pls use a discord id");
         }
 
-    }
-
-    @Override
-    protected MessageEmbed fullHelpPage() {
-        // even with content it wouldn't visible in the global help command because the helpPage is disabled 
-        // in the command properties.
-        return null;
     }
 }

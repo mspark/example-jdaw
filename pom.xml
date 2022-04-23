@@ -4,13 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.mspark</groupId>
 	<artifactId>example-jdaw</artifactId>
-	<version>1.0</version>
 	<name>example-jdaw</name>
 
 	<parent>
 		<groupId>de.mspark.jdaw</groupId>
 		<artifactId>jdaw-spring-boot</artifactId>
-		<version>3.0</version>
+		<version>4.0</version>
 	</parent>
 
 	<dependencies>

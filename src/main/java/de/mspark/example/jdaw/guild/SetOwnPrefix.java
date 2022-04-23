@@ -7,20 +7,20 @@ import de.mspark.jdaw.Command;
 import de.mspark.jdaw.CommandProperties;
 import de.mspark.jdaw.DistributionSetting;
 import de.mspark.jdaw.JDAManager;
-import de.mspark.jdaw.config.JDAWConfig;
+import de.mspark.jdaw.guilds.CustomGuildConf;
 import de.mspark.jdaw.guilds.GuildConfigService;
 import de.mspark.jdaw.guilds.GuildRepository;
-import de.mspark.jdaw.guilds.model.CustomGuildConf;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
-@CommandProperties(trigger = "prefix", description = "Sets the prefix", userGuildPermissions = Permission.MANAGE_SERVER, helpPage = false)
+@CommandProperties(trigger = "prefix", description = "Sets the prefix", userGuildPermissions = Permission.MANAGE_SERVER)
 public class SetOwnPrefix extends Command {
     private GuildRepository repo;
-    
-    public SetOwnPrefix(JDAWConfig config, GuildConfigService guildConfig, GuildRepository repo, JDAManager jdas) {
-        super(config, guildConfig, jdas, DistributionSetting.MAIN_ONLY);
+
+    public SetOwnPrefix(GuildConfigService guildConfig, GuildRepository repo, JDAManager jdas) {
+        super(guildConfig, jdas, DistributionSetting.MAIN_ONLY);
         this.repo = repo;
     }
 
@@ -35,13 +35,13 @@ public class SetOwnPrefix extends Command {
     }
 
     @Override
-    protected MessageEmbed fullHelpPage() {
-        // TODO Auto-generated method stub
-        return null;
+    protected MessageEmbed commandHelpPage() {
+        return new EmbedBuilder().setDescription(
+            "Changes the prefix for the current guild to another one. First argument is the new prefix").build();
     }
-    
-    // !!! SQL Injection possible - just for example !!!
+
+    // just as an example. Use better filter for SQL injections etc.
     public Optional<String> filter(String desiredPrefix) {
-        return Optional.of(desiredPrefix);
+        return Optional.of(desiredPrefix).filter(s -> !s.contains(" "));
     }
 }
