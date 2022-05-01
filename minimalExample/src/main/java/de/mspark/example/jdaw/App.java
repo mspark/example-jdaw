@@ -17,8 +17,8 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
 public class App {
 
     public static void main(String[] args) {
-        var instance = new JdawBuilder(jdawConfig()).withHelpConfig(helpConfig())
-            .withJdawConfigurationVisitors(jdaConfigurationVisitor())
+        var instance = new JdawBuilder(jdawConfig()).enableHelpCommand(helpConfig())
+            .setJdawConfigurationVisitors(jdaConfigurationVisitor())
             .buildInstance();
         instance.register(new BalanceTestCommand());
         instance.register(new DeleteCommand());

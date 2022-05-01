@@ -4,14 +4,23 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.mspark</groupId>
 	<version>1.0.0</version>
-	<artifactId>example-jdaw</artifactId>
-	<name>example-jdaw</name>
+	<artifactId>example-jdaw-spring</artifactId>
+	<name>Rich example with spring</name>
+	<parent>
+		<groupId>de.mspark.jdaw</groupId>
+		<artifactId>jdaw-spring-boot</artifactId>
+		<version>5.0</version>
+	</parent>
 
 	<dependencies>
 		<dependency>
-			<groupId>de.mspark</groupId>
-			<artifactId>jdaw</artifactId>
-			<version>5.0</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 

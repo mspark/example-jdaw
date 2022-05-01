@@ -1,0 +1,30 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.mspark</groupId>
+	<version>1.0.0</version>
+	<artifactId>example-jdaw</artifactId>
+	<name>example-jdaw-minimal</name>
+
+	<properties>
+		<maven.compiler.target>1.17</maven.compiler.target>
+		<maven.compiler.source>1.17</maven.compiler.source>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>de.mspark</groupId>
+			<artifactId>jdaw</artifactId>
+			<version>5.0</version>
+		</dependency>
+	</dependencies>
+
+	<distributionManagement>
+		<repository>
+			<id>github-jdaw</id>
+			<name>JDAW GitHub Packages</name>
+			<url>https://maven.pkg.github.com/mspark/jdaw</url>
+		</repository>
+	</distributionManagement>
+</project>
