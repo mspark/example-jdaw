@@ -5,30 +5,46 @@ import static net.dv8tion.jda.api.Permission.MANAGE_SERVER;
 
 import java.util.List;
 
-import de.mspark.jdaw.Command;
-import de.mspark.jdaw.CommandProperties;
-import de.mspark.jdaw.DistributionSetting;
-import de.mspark.jdaw.JDAManager;
-import de.mspark.jdaw.guilds.GuildConfigService;
+import de.mspark.jdaw.core.DistributionSetting;
+import de.mspark.jdaw.core.TextCommand;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
 
 /**
  * 
- * You need to enable caching for this command in the JDA configuration. See 
+ * You need to enable caching for this command in the JDA configuration. See
  * https://stackoverflow.com/questions/61226721/discord-jda-invalid-member-list
  */
-@CommandProperties(trigger = "delete", description = "Deletes all member from one group.",
-    botGuildPermissions = MANAGE_ROLES, userGuildPermissions = MANAGE_SERVER,
-    executableWihtoutArgs = false)
-public class DeleteCommand extends Command {
-
-    public DeleteCommand(GuildConfigService gc, JDAManager jdas) {
-        super(gc, jdas, DistributionSetting.MAIN_ONLY);
+public class DeleteCommand extends TextCommand {
+    @Override
+    public String trigger() {
+        return "delete";
+    }
+    
+    @Override
+    public String description() {
+        return "Deletes all member from one group.";
+    }
+    
+    @Override
+    public DistributionSetting distributionSetting() {
+        return DistributionSetting.MAIN_ONLY;
+    }
+    
+    @Override
+    public Permission[] botGuildPermissions() {
+        return new Permission[] { MANAGE_ROLES };
+        
+    }
+    
+    @Override
+    public Permission[] userGuildPermissions() {
+        return new Permission[] { MANAGE_SERVER };
     }
 
     @Override
-    public void doActionOnCmd(Message msg, List<String> cmdArguments) {
+    public void doActionOnTrigger(Message msg, List<String> cmdArguments) {
         try {
             long id = Long.parseLong(cmdArguments.get(0));
             Role role = msg.getGuild().getRoleById(id);

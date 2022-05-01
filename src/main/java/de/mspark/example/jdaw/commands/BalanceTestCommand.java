@@ -6,39 +6,24 @@ import static net.dv8tion.jda.api.Permission.KICK_MEMBERS;
 
 import java.util.List;
 
-import de.mspark.jdaw.Command;
-import de.mspark.jdaw.CommandProperties;
-import de.mspark.jdaw.DistributionSetting;
-import de.mspark.jdaw.JDAManager;
-import de.mspark.jdaw.guilds.GuildConfigService;
+import de.mspark.jdaw.config.JDAManager;
+import de.mspark.jdaw.core.TextCommand;
 import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
-@CommandProperties(
-        trigger = "test",
-        description = "Demonstration of different JDA execution",
-        botGuildPermissions = {KICK_MEMBERS, BAN_MEMBERS},
-        userGuildPermissions = ADMINISTRATOR,
-        executableWihtoutArgs = false
-    )
-public class BalanceTestCommand extends Command {
+public class BalanceTestCommand extends TextCommand {
     private JDAManager jdas;
 
-    /*
-     * Due to the balancing option, this command is not executed on the main token only. 
-     */
-    public BalanceTestCommand(GuildConfigService gc, JDAManager jdas) {
-        super(gc, jdas, DistributionSetting.BALANCE);
-    }
-
     @Override
-    public void doActionOnCmd(Message msg, List<String> cmdArguments) {
+    public void doActionOnTrigger(Message msg, List<String> cmdArguments) {
         // first index is safe because "executableWithoutArgs" is false!
         switch (cmdArguments.get(0)) {
         case "run" -> msg.getChannel().sendMessage("Works!").submit();
         // even without balancing the whole command, its possible to execute actions on other bot instances.
-        case "runelsewhere" -> jdas.getNextJDA().getTextChannelById(msg.getChannel().getId()).sendMessage("ok").submit();
+        case "runelsewhere" -> jdas.getNextJDA().getTextChannelById(msg.getChannel().getId()).sendMessage("ok")
+            .queue();
         default -> msg.reply("Unknown argument").submit();
         }
     }
@@ -46,6 +31,26 @@ public class BalanceTestCommand extends Command {
     @Override
     public MessageEmbed commandHelpPage() {
         return new EmbedBuilder().setDescription("Hi!").build();
+    }
+
+    @Override
+    public String trigger() {
+        return "test";
+    }
+
+    @Override
+    public String description() {
+        return "Demonstration of different JDA execution";
+    }
+
+    @Override
+    public Permission[] userGuildPermissions() {
+        return new Permission[] { ADMINISTRATOR };
+    }
+
+    @Override
+    public Permission[] botGuildPermissions() {
+        return new Permission[] { KICK_MEMBERS, BAN_MEMBERS };
     }
 
 }
