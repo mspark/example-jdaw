@@ -8,15 +8,15 @@
 	<name>example-jdaw-minimal</name>
 
 	<properties>
-		<maven.compiler.target>1.17</maven.compiler.target>
-		<maven.compiler.source>1.17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>de.mspark</groupId>
 			<artifactId>jdaw</artifactId>
-			<version>5.0</version>
+			<version>5.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
