@@ -7,12 +7,14 @@ import java.util.List;
 
 import de.mspark.jdaw.core.DistributionSetting;
 import de.mspark.jdaw.core.TextCommand;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageEmbed;
+import net.dv8tion.jda.api.entities.MessageEmbed.Field;
 import net.dv8tion.jda.api.entities.Role;
 
 /**
- * 
  * You need to enable caching for this command in the JDA configuration. See
  * https://stackoverflow.com/questions/61226721/discord-jda-invalid-member-list
  */
@@ -42,6 +44,13 @@ public class DeleteCommand extends TextCommand {
     public Permission[] userGuildPermissions() {
         return new Permission[] { MANAGE_SERVER };
     }
+    
+    @Override
+        public MessageEmbed commandHelpPage() {
+            return new EmbedBuilder().setDescription(description())
+                    .addField(new Field("<GROUPID>", "Value defines the group of member to be deleted", false))
+                    .build();
+        }
 
     @Override
     public void doActionOnTrigger(Message msg, List<String> cmdArguments) {

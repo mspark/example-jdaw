@@ -19,7 +19,8 @@ public class App {
             .addForRegister(new BalanceTestCommand())
             .addForRegister(new DeleteCommand())
             .buildJdawInstance();
-        instance.getRegisterdActions().forEach(a -> System.out.println("Listening on trigger " + a.trigger()));
+        instance.getRegisterdActions()
+            .forEach(a -> System.out.println("Listening on trigger \"%s\"".formatted(a.trigger())));
         // use instance.register(cmd) for adding additional commands later
     }
 
