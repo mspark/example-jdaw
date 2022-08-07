@@ -4,25 +4,23 @@ import de.mspark.example.jdaw.commands.BalanceTestCommand;
 import de.mspark.example.jdaw.commands.DeleteCommand;
 import de.mspark.jdaw.config.JDAConfigurationVisitor;
 import de.mspark.jdaw.config.JDAWConfig;
-import de.mspark.jdaw.config.JdawBuilder;
+import de.mspark.jdaw.config.JdawInstanceBuilder;
 import de.mspark.jdaw.help.HelpConfig;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
-/**
- * Hello world!
- *
- */
 public class App {
 
     public static void main(String[] args) {
-        var instance = new JdawBuilder(jdawConfig()).enableHelpCommand(helpConfig())
+        var instance = new JdawInstanceBuilder(jdawConfig())
+            .enableHelpCommand(helpConfig())
             .setJdawConfigurationVisitors(jdaConfigurationVisitor())
-            .buildInstance();
-        instance.register(new BalanceTestCommand());
-        instance.register(new DeleteCommand());
-        instance.start();
+            .addForRegister(new BalanceTestCommand())
+            .addForRegister(new DeleteCommand())
+            .buildJdawInstance();
+        instance.getRegisterdActions().forEach(a -> System.out.println("Listening on trigger " + a.trigger()));
+        // use instance.register(cmd) for adding additional commands later
     }
 
     // config for enabling member caching via intent
