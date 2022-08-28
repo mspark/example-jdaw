@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import de.mspark.jdaw.core.DistributionSetting;
-import de.mspark.jdaw.core.TextCommand;
+import de.mspark.jdaw.cmdapi.DistributionSetting;
+import de.mspark.jdaw.cmdapi.TextCommand;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.Role;
@@ -47,14 +47,14 @@ public class DeleteCommand extends TextCommand {
     }
 
     @Override
-    public void doActionOnTrigger(Message msg, List<String> cmdArguments) {
+    public void onTrigger(Message msg, List<String> cmdArguments) {
         try {
             long id = Long.parseLong(cmdArguments.get(0));
             Role role = msg.getGuild().getRoleById(id);
             msg.getGuild()
                 .getMembers().stream()
                 .filter(m -> m.getRoles().stream().anyMatch(r -> r.getId().equals(role.getId())))
-                .forEach(m -> msg.getGuild().removeRoleFromMember(m.getId(), role).queue());
+                .forEach(m -> msg.getGuild().removeRoleFromMember(m, role).queue());
         } catch (NumberFormatException e) {
             throw new RuntimeException("Invalid property. Pls use a discord id");
         }

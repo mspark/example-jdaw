@@ -6,8 +6,8 @@ import static net.dv8tion.jda.api.Permission.KICK_MEMBERS;
 
 import java.util.List;
 
-import de.mspark.jdaw.config.JDAManager;
-import de.mspark.jdaw.core.TextCommand;
+import de.mspark.jdaw.cmdapi.TextCommand;
+import de.mspark.jdaw.startup.JDAManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Message;
@@ -17,7 +17,7 @@ public class BalanceTestCommand extends TextCommand {
     private JDAManager jdas;
 
     @Override
-    public void doActionOnTrigger(Message msg, List<String> cmdArguments) {
+    public void onTrigger(Message msg, List<String> cmdArguments) {
         // first index is safe because "executableWithoutArgs" is false!
         switch (cmdArguments.get(0)) {
         case "run" -> msg.getChannel().sendMessage("Works!").submit();
